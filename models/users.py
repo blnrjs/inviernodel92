@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from data_base import DataBase, db
+from data_base import DataBase
 
 class Users:
     def __init__(self, users):
 
+        self._id_user = users.get('id_user', False)
         self._name = users.get('name', False)
         self._password = users.get('password', False)
     
@@ -18,7 +19,11 @@ class Users:
         user = ps_cursor.fetchone()
         ps_cursor.close()
         return user
-    
+
+    @property
+    def id_user(self):
+        return self._id_user
+
     @property
     def name(self):
         return self._name
@@ -26,7 +31,11 @@ class Users:
     @property
     def password(self):
         return self._password
-    
+
+    @id_user.setter
+    def id_user(self, id_user):
+        self._id_user = id_user
+
     @name.setter
     def name(self, name):
         self._name = name
